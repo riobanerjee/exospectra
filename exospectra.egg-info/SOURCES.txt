@@ -1,0 +1,8 @@
+README.md
+setup.py
+exospectra/get_data.py
+exospectra.egg-info/PKG-INFO
+exospectra.egg-info/SOURCES.txt
+exospectra.egg-info/dependency_links.txt
+exospectra.egg-info/requires.txt
+exospectra.egg-info/top_level.txt
