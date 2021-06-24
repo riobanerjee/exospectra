@@ -6,7 +6,7 @@ class Planet:
         self.pname = pname
         self.datadir = datadir
         self.df = pd.read_csv('data/transitspec.csv', skiprows=26)
-        self.df = df[df['plntname']==pname]
+        self.df = self.df[self.df['plntname']==pname].sort_values(by='centralwavelng')
 
     def wavelength(self):
         """
