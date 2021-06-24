@@ -1,2 +1,2 @@
 # exospectra
-A python package to produce transmission spectra of exoplanets from raw pixel data
+A python package to plot transmission spectra of exoplanets using data retrieved from the NASA Exoplanet Archive.
