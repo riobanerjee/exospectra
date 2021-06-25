@@ -24,19 +24,22 @@ class Spectrum:
         td = np.array(td)
         tdp = np.array(tdp)
         tdm = np.array(abs(tdm))
-       
+        bw  = np.array(bw)
 
         wav1 =[]
+        bw1 = []
         td1 =[]
         tdp1 =[]
         tdm1 =[]
         yerr = []
+
         for i in range(len(wav)):
             if wav[i] != wav[i-1]:
                 wav1.append(wav[i])
                 td1.append(td[i])
                 tdp1.append(tdp[i])
                 tdm1.append(tdm[i])
+                bw1.append(bw[i])
                 yerr.append((tdm[i], tdp[i]))
                 
             else:
@@ -50,7 +53,7 @@ class Spectrum:
         lines={'linestyle': 'None'}
         plt.rc('lines', **lines)
         pl.plot(wav1, td1, 'go', markersize=6)
-        el = pl.errorbar(wav1, td1, yerr=yerr1, fmt='b', ecolor='red')
+        el = pl.errorbar(wav1, td1, xerr = bw1, yerr=yerr1, fmt='b', ecolor='red')
         
         plt.xlim(0,5)
         ax.set_ylim([2.38,2.5])
