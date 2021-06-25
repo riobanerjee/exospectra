@@ -6,7 +6,10 @@ class Planet:
         self.pname = pname
         self.datadir = datadir
         self.df = pd.read_csv('data/transitspec.csv', skiprows=26)
-        self.df = self.df[self.df['plntname']==pname].sort_values(by='centralwavelng')
+        self.df = self.df[self.df['instrument']=='Wide Field Camera 3']
+        self.df = self.df[self.df['plntname']==pname]
+        self.df = self.df.drop_duplicates(subset=['centralwavelng'])
+        self.df = self.df.sort_values(by='centralwavelng')
 
     def wavelength(self):
         """
@@ -22,23 +25,8 @@ class Planet:
         """
         td = self.df['plntransdep']
         td = td.fillna(100*self.df['plnratror']**2)
-        tde_plus = self.df['plntransdeperr1']
-        tde_plus = tde_plus.fillna(200*self.df['plnratror']*self.df['plntransdeperr1'])
-        tde_minus = self.df['plntransdeperr2']
-        tde_minus = tde_minus.fillna(200*self.df['plnratror']*self.df['plntransdeperr2'])
+        tde = self.df['plntransdeperr1']
+        tde = 2*tde.fillna(200*self.df['plnratror']*self.df['plnratrorerr1'])
+        
+        return td, tde
 
-        return td, tde_plus, tde_minus
-
-    def facility(self):
-        """
-        Function to return the facility used for
-        observations
-        """
-        return self.df['facility']
-
-    def instrument(self):
-        """
-        Function to return the instrument used for
-        observations
-        """
-        return self.df['instrument']

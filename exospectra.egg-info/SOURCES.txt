@@ -1,6 +1,9 @@
+LICENSE
 README.md
 setup.py
+exospectra/__init__.py
 exospectra/get_data.py
+exospectra/plotter.py
 exospectra.egg-info/PKG-INFO
 exospectra.egg-info/SOURCES.txt
 exospectra.egg-info/dependency_links.txt
